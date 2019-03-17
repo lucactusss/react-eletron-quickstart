@@ -1,5 +1,14 @@
-.node_modules
-package_lock.json
+# Gitingore for react / electron project
+# Npm - yarn
+package-lock.json
+yarn.lock
+node_modules/
 
+# VSCode specific
 .history/
 .vscode/
+
+# Project exclusions
+build/
+dist/
+src/**/*.css

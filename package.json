@@ -5,26 +5,42 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "react-start": "react-scripts start",
-    "react-build": "react-scripts build",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "react-test": "react-scripts test --env=jsdom",
     "react-eject": "react-scripts eject",
+    "react-start-js": "react-scripts start",
+    "react-start": "npm-run-all -p watch-css react-start-js",
+    "react-build-js": "react-scripts build",
+    "react-build": "npm-run-all build-css react-build-js",
     "electron-build": "electron-builder",
     "release": "yarn react-build && electron-builder --publish=always",
     "build": "yarn react-build && yarn electron-build",
-    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "lint": "eslint src/",
+    "precommit": "lint-staged"
   },
   "build": {
     "publish": {
       "provider": "github"
     }
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "main": "public/electron.js",
-  "homepage": "./",
+  "homepage": "https://github.com/lucactusss/react-eletron-quickstart",
   "dependencies": {
     "cross-env": "5.2.0",
     "electron-is-dev": "1.0.1",
     "electron-log": "3.0.1",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "node-sass-chokidar": "^1.3.4",
+    "npm-run-all": "^4.1.5",
     "react": "16.8.4",
     "react-dom": "16.8.4",
     "update-electron-app": "1.3.0"
@@ -33,6 +49,7 @@
     "concurrently": "4.1.0",
     "electron": "4.0.8",
     "electron-builder": "^20.38.5",
+    "eslint-plugin-prettier": "^3.0.1",
     "prettier": "^1.16.4",
     "react-scripts": "2.1.8",
     "wait-on": "3.2.0"
