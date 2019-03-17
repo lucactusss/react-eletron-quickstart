@@ -1,0 +1,46 @@
+{
+  "name": "react-electron-quickstart",
+  "description": "Quickstart project for react / electron",
+  "author": "Lucas \"Lucactusss\" Martin-Chabalier",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test --env=jsdom",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "release": "yarn react-build && electron-builder --publish=always",
+    "build": "yarn react-build && yarn electron-build",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
+  },
+  "build": {
+    "publish": {
+      "provider": "github"
+    }
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "dependencies": {
+    "cross-env": "5.2.0",
+    "electron-is-dev": "1.0.1",
+    "electron-log": "3.0.1",
+    "react": "16.8.4",
+    "react-dom": "16.8.4",
+    "update-electron-app": "1.3.0"
+  },
+  "devDependencies": {
+    "concurrently": "4.1.0",
+    "electron": "4.0.8",
+    "electron-builder": "^20.38.5",
+    "prettier": "^1.16.4",
+    "react-scripts": "2.1.8",
+    "wait-on": "3.2.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
