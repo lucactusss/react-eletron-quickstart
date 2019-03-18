@@ -2,6 +2,7 @@
   "name": "react-electron-quickstart",
   "description": "Quickstart project for react / electron",
   "author": "Lucas \"Lucactusss\" Martin-Chabalier",
+  "email": "lucas.martinchabalier@gmail.com",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -14,13 +15,34 @@
     "react-build-js": "react-scripts build",
     "react-build": "npm-run-all build-css react-build-js",
     "electron-build": "electron-builder",
-    "release": "yarn react-build && electron-builder --publish=always",
+    "release": "yarn react-build && electron-builder",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "lint": "eslint src/",
     "precommit": "lint-staged"
   },
   "build": {
+    "appId": "com.poudou.reactelectronexample",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "maintainer": "Lucas Martin-Chabalier"
+    },
     "publish": {
       "provider": "github"
     }
