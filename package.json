@@ -54,7 +54,7 @@
     ]
   },
   "main": "public/electron.js",
-  "homepage": "https://github.com/lucactusss/react-eletron-quickstart",
+  "homepage": "./index.html",
   "dependencies": {
     "cross-env": "5.2.0",
     "electron-is-dev": "1.0.1",
