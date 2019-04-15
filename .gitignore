@@ -11,7 +11,7 @@ node_modules/
 # Project exclusions
 build/
 dist/
-src/**/*.css
+/src/**/*.css
 
 # dependencies
 /.pnp
